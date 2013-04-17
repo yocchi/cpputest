@@ -8,9 +8,7 @@ env:
 install:
   - wget https://googlemock.googlecode.com/files/gmock-1.6.0.zip
   - unzip gmock-1.6.0.zip
-  - cd gmock-1.6.0
-  - ./configure && make
-  - cd ..
+  - if [ $BUILDTOOL = "autotools" ]; then cd gmock-1.6.0 && ./configure && make && cd ..; fi
 before_script:
   # begin clang workaround
   - export CMAKE_BUILD_TYPE=RelWithDebInfo
